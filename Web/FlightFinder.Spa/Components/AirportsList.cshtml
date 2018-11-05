@@ -1,0 +1,18 @@
+﻿@inject IAirportSearchService airportSearchService
+
+<datalist id="airports">
+    @foreach (var airport in airports)
+    {
+        <option value=@airport.Code>@airport.DisplayName (@airport.Code)</option>
+    }
+</datalist>
+
+@functions
+{
+    private IEnumerable<Airport> airports = Array.Empty<Airport>();
+
+    protected override async Task OnInitAsync()
+    {
+        airports = await airportSearchService.GetAllAirports();
+    }
+}
