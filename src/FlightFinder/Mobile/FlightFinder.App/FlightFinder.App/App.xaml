@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms"
+             x:Class="FlightFinder.App.App">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="LightGrayImagePlaceholderColor">#D8D8D8</Color>
+            <Color x:Key="DarkGreenColor">#0F6A82</Color>
+            <Color x:Key="ColorSeparator">#B0E9DE</Color>
+            <Color x:Key="ColorOrange">#FBAE17</Color>
+            <Color x:Key="ColorPurple">#9d136d</Color>
+            <Color x:Key="ColorLightPurple">#e558b4</Color>
+            <Color x:Key="ColorWhite">White</Color>
+            <Color x:Key="AndroidEntryPlaceholderTextColor">#99C3CE</Color>
+            <Color x:Key="iOSEntryPlaceholderTextColor">Silver</Color>
+
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource ColorPurple}" />
+                <Setter Property="BarTextColor" Value="{StaticResource ColorWhite}" />
+            </Style>
+
+            <Style x:Key="DefaultEntryStyle" TargetType="Entry">
+                <Setter Property="TextColor">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="Color">
+                            <On Platform="Android" Value="White" />
+                            <On Platform="iOS" Value="Black" />
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="PlaceholderColor">
+                    <Setter.Value>
+                        <OnPlatform
+                            x:TypeArguments="Color"
+                            Android="{StaticResource AndroidEntryPlaceholderTextColor}"
+                            iOS="{StaticResource iOSEntryPlaceholderTextColor}" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="HeightRequest">
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="iOS" Value="40" />
+                        <On Platform="Android" Value="-1" />
+                    </OnPlatform>
+                </Setter>
+                <Setter Property="FontSize">
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="iOS" Value="15" />
+                        <On Platform="Android" Value="17" />
+                    </OnPlatform>
+                </Setter>
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String">
+                        <On Platform="Android" Value="sans-serif" />
+                        <On Platform="iOS" Value="HelveticaNeue" />
+                    </OnPlatform>
+                </Setter>
+            </Style>
+
+            <Style x:Key="ButtonDefaultStyle" TargetType="Button">
+                <Setter Property="BorderRadius" Value="10" />
+                <Setter Property="BorderWidth" Value="0" />
+                <Setter Property="BorderColor" Value="Transparent" />
+                <Setter Property="BackgroundColor" Value="{StaticResource ColorOrange}" />
+                <Setter Property="TextColor" Value="{StaticResource ColorWhite}" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="HeightRequest">
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android" Value="60" />
+                        <On Platform="iOS" Value="50" />
+                    </OnPlatform>
+                </Setter>
+            </Style>
+            <Style x:Key="DefaultLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource ColorWhite}" />
+                <Setter Property="FontSize">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="iOS" Value="14" />
+                            <On Platform="Android" Value="15" />
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String">
+                        <On Platform="Android" Value="sans-serif" />
+                        <On Platform="iOS" Value="HelveticaNeue" />
+                    </OnPlatform>
+                </Setter>
+            </Style>
+            <Style x:Key="ListLabelTitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource DarkGreenColor}" />
+                <Setter Property="FontSize">
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="iOS" Value="14" />
+                        <On Platform="Android" Value="15" />
+                    </OnPlatform>
+                </Setter>
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String">
+                        <On Platform="Android" Value="sans-serif-medium" />
+                        <On Platform="iOS" Value="HelveticaNeue-Medium" />
+                    </OnPlatform>
+                </Setter>
+            </Style>
+
+            
+
+            <OnPlatform x:Key="FontFamilyBold" x:TypeArguments="x:String">
+                <On Platform="Android" Value="sans-serif-black" />
+                <On Platform="iOS" Value="HelveticaNeue-Bold" />
+            </OnPlatform>
+            <OnPlatform x:Key="FontFamilyMedium" x:TypeArguments="x:String">
+                <On Platform="Android" Value="sans-serif-medium" />
+                <On Platform="iOS" Value="HelveticaNeue-Medium" />
+            </OnPlatform>
+            <OnPlatform x:Key="FontFamilyDefault" x:TypeArguments="x:String">
+                <On Platform="Android" Value="sans-serif" />
+                <On Platform="iOS" Value="HelveticaNeue" />
+            </OnPlatform>
+
+        </ResourceDictionary>
+       
+    </Application.Resources>
+</prism:PrismApplication>

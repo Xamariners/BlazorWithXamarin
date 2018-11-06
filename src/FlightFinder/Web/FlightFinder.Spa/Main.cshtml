@@ -1,0 +1,25 @@
+﻿@inject FlightSearchState flightSearchState
+
+<div id="search-and-results-area">
+    <div id="search-area" class="px-2 py-3">
+        <Search OnSearch=flightSearchState.Search />
+    </div>
+    <div id="results-area">
+        <GreyOutZone IsGreyedOut=flightSearchState.SearchInProgress>
+            <SearchResults Itineraries=flightSearchState.SearchResults
+                           OnAddItinerary=flightSearchState.AddToShortlist />
+        </GreyOutZone>
+    </div>
+</div>
+<div id="selections-area" class="p-3 pl-4">
+    <Shortlist Itineraries=flightSearchState.Shortlist
+               OnRemoveItinerary=flightSearchState.RemoveFromShortlist />
+</div>
+
+@functions
+{
+    protected override void OnInit()
+    {
+        flightSearchState.OnChange += StateHasChanged;
+    }
+}
