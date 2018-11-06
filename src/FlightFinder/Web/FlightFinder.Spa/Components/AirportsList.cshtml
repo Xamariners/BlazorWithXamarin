@@ -1,4 +1,4 @@
-﻿@inject IAirportSearchService airportSearchService
+﻿@inject FlightSearchState airportSearchState
 
 <datalist id="airports">
     @foreach (var airport in airports)
@@ -13,6 +13,6 @@
 
     protected override async Task OnInitAsync()
     {
-        airports = await airportSearchService.GetAllAirports();
+        airports = await airportSearchState.GetAllAirports();
     }
 }

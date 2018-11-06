@@ -43,6 +43,7 @@
                         <Picker
                             Margin="0,4,0,8"
                             ItemsSource="{Binding Airports}"
+                            ItemDisplayBinding="{Binding Code}"
                             SelectedIndex="{Binding FromAirportsSelectedIndex}"
                             FontFamily="{StaticResource FontFamilyDefault}"
                             TextColor="{StaticResource DarkGreenColor}">
@@ -75,6 +76,7 @@
                         <Picker
                             Margin="0,4,0,8"
                             ItemsSource="{Binding Airports}"
+                            ItemDisplayBinding="{Binding Code}"
                             SelectedIndex="{Binding ToAirportsSelectedIndex}"
                             FontFamily="{StaticResource FontFamilyDefault}"
                             TextColor="{StaticResource DarkGreenColor}">
@@ -215,23 +217,20 @@
                                         AutomationId="TicketIdLabel"
                                         FontAttributes="Bold"
                                         Style="{StaticResource ListLabelTitleStyle}"
-                                        Text="Some text1" />
+                                        Text="{Binding Outbound.Airline}" />
                                 </StackLayout>
                                 <Label
-                                    AutomationId="FaultTypeLabel"
                                     Style="{StaticResource DefaultLabelStyle}"
-                                    Text="some text2"
+                                    Text="{Binding Outbound.FromAirportCode}"
                                     TextColor="{StaticResource DarkGreenColor}" />
                                 <Label
-                                    AutomationId="BuildingNameLabel"
                                     LineBreakMode="TailTruncation"
                                     Style="{StaticResource DefaultLabelStyle}"
-                                    Text="some text3"
+                                    Text="{Binding Outbound.ToAirportCode}"
                                     TextColor="{StaticResource DarkGreenColor}" />
                                 <Label
-                                    AutomationId="CreatedDateLabel"
                                     Style="{StaticResource DefaultLabelStyle}"
-                                    Text="{Binding CreatedDate, StringFormat='{0:dd MMM yyyy}'}"
+                                    Text="{Binding Outbound.DepartureTime, StringFormat='{0:dd MMM yyyy}'}"
                                     TextColor="{StaticResource DarkGreenColor}" />
                             </StackLayout>
 

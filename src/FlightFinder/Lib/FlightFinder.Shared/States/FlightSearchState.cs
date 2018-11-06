@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using FlightFinder.Common.Services;
 
-namespace FlightFinder.Shared.ViewModels
+namespace FlightFinder.Shared.States
 {
     public class FlightSearchState
     {
@@ -20,19 +20,27 @@ namespace FlightFinder.Shared.ViewModels
         public event Action OnChange;
         
         private readonly IFlightSearchService _flightSearchService;
+        private readonly IAirportSearchService _airportSearchService;
 
-        public FlightSearchState(IFlightSearchService flightSearchService)
+        public FlightSearchState(IFlightSearchService flightSearchService, IAirportSearchService airportSearchService)
         {
             _flightSearchService = flightSearchService;
+            _airportSearchService = airportSearchService;
         }
 
-        public async Task Search(SearchCriteria criteria)
+        public async Task SearchFlights(SearchCriteria criteria)
         {
             SearchInProgress = true;
             NotifyStateChanged();
             SearchResults = await _flightSearchService.Search(criteria) as IReadOnlyList<Itinerary>;
             SearchInProgress = false;
             NotifyStateChanged();
+        }
+
+        public async Task<IEnumerable<Airport>> GetAllAirports()
+        {
+            var airports = await _airportSearchService.GetAllAirports();
+            return airports;
         }
 
         public void AddToShortlist(Itinerary itinerary)

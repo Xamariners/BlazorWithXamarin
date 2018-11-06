@@ -5,7 +5,7 @@ using FlightFinder.App.ViewModels;
 using FlightFinder.App.Views;
 using FlightFinder.Common.Services;
 using FlightFinder.Shared.Services;
-using FlightFinder.Shared.ViewModels;
+using FlightFinder.Shared.States;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -42,6 +42,7 @@ namespace FlightFinder.App
             containerRegistry.RegisterSingleton<FlightSearchState>();
             containerRegistry.Register<IAppConfiguration, AppConfiguration>();
             containerRegistry.Register<IFlightSearchService, FlightSearchService>();
+            containerRegistry.Register<IAirportSearchService, AirportSearchService>();
         }
     }
 }

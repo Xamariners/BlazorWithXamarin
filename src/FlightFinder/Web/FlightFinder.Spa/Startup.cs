@@ -1,6 +1,6 @@
 ﻿using FlightFinder.Common.Services;
 using FlightFinder.Shared.Services;
-using FlightFinder.Shared.ViewModels;
+using FlightFinder.Shared.States;
 using FlightFinder.Spa.Services;
 using Microsoft.AspNetCore.Blazor.Builder;
 using Microsoft.Extensions.DependencyInjection;

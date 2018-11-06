@@ -32,6 +32,7 @@
     <CodesignEntitlements />
     <CodesignKey>iPhone Developer: Ben Ishiyama-Levy (R7V39R6CCJ)</CodesignKey>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
