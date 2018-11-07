@@ -72,6 +72,20 @@
                     </OnPlatform>
                 </Setter>
             </Style>
+            <Style x:Key="ButtonSmallStyle" TargetType="Button">
+                <Setter Property="BorderRadius" Value="10" />
+                <Setter Property="BorderWidth" Value="0" />
+                <Setter Property="BorderColor" Value="Transparent" />
+                <Setter Property="BackgroundColor" Value="{StaticResource ColorOrange}" />
+                <Setter Property="TextColor" Value="{StaticResource ColorWhite}" />
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="HeightRequest">
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android" Value="15" />
+                        <On Platform="iOS" Value="10" />
+                    </OnPlatform>
+                </Setter>
+            </Style>
             <Style x:Key="DefaultLabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource ColorWhite}" />
                 <Setter Property="FontSize">
@@ -104,8 +118,21 @@
                     </OnPlatform>
                 </Setter>
             </Style>
-
-            
+            <Style x:Key="ListLabelSmallStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource DarkGreenColor}" />
+                <Setter Property="FontSize">
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="iOS" Value="9" />
+                        <On Platform="Android" Value="10" />
+                    </OnPlatform>
+                </Setter>
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String">
+                        <On Platform="Android" Value="sans-serif-medium" />
+                        <On Platform="iOS" Value="HelveticaNeue-Medium" />
+                    </OnPlatform>
+                </Setter>
+            </Style>
 
             <OnPlatform x:Key="FontFamilyBold" x:TypeArguments="x:String">
                 <On Platform="Android" Value="sans-serif-black" />

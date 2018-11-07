@@ -49,6 +49,11 @@ namespace FlightFinder.App.ViewModels
         public override async void OnNavigatingTo(INavigationParameters parameters)
         {
             Airports = await FlightSearchState.GetAllAirports();
+
+            // set default airports
+            FromAirportsSelectedIndex = 1;
+            ToAirportsSelectedIndex = 2;
+
             base.OnNavigatingTo(parameters);
         }
     }

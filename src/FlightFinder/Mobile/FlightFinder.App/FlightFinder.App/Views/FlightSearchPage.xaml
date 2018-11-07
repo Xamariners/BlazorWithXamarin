@@ -17,7 +17,6 @@
         <ListView
                     Grid.Row="0"
                     Grid.RowSpan="2"
-                    AutomationId="FaultsListView"
                     BackgroundColor="Transparent"
                     HasUnevenRows="True"
                     IsPullToRefreshEnabled="true"
@@ -25,10 +24,10 @@
                     SelectedItem="{Binding SelectedItinerary, Mode=TwoWay}"
                     SeparatorVisibility="None">
             <ListView.Header>
+                <Grid Padding="0,10">
 
-                <StackLayout Margin="0,10" Orientation="Vertical">
-                    <StackLayout Margin="0,10" Orientation="Horizontal">
-                        <Label      
+                    <Label  Grid.Row="0"
+                            Grid.Column="0"   
                             FontFamily="{StaticResource FontFamilyBold}"
                             Style="{StaticResource ListLabelTitleStyle}"
                             Text="From:"
@@ -41,12 +40,14 @@
                         </Label>
 
                         <Picker
-                            Margin="0,4,0,8"
+                            Grid.Row="0"
+                            Grid.Column="1"
                             ItemsSource="{Binding Airports}"
                             ItemDisplayBinding="{Binding Code}"
                             SelectedIndex="{Binding FromAirportsSelectedIndex}"
                             FontFamily="{StaticResource FontFamilyDefault}"
-                            TextColor="{StaticResource DarkGreenColor}">
+                            TextColor="{StaticResource DarkGreenColor}"
+                            >
                             <Picker.HeightRequest>
                                 <OnPlatform x:TypeArguments="x:Double">
                                     <On Platform="iOS" Value="40" />
@@ -62,6 +63,8 @@
                         </Picker>
 
                         <Label      
+                            Grid.Row="0"
+                            Grid.Column="2"
                             FontFamily="{StaticResource FontFamilyBold}"
                             Style="{StaticResource ListLabelTitleStyle}"
                             Text="To:"
@@ -74,7 +77,8 @@
                         </Label>
 
                         <Picker
-                            Margin="0,4,0,8"
+                            Grid.Row="0"
+                            Grid.Column="3"
                             ItemsSource="{Binding Airports}"
                             ItemDisplayBinding="{Binding Code}"
                             SelectedIndex="{Binding ToAirportsSelectedIndex}"
@@ -93,13 +97,13 @@
                                 </OnPlatform>
                             </Picker.FontSize>
                         </Picker>
-                    </StackLayout>
 
-                    <StackLayout Margin="0,10" Orientation="Horizontal">
                         <Label      
+                            Grid.Row="1"
+                            Grid.Column="0"
                             FontFamily="{StaticResource FontFamilyBold}"
                             Style="{StaticResource ListLabelTitleStyle}"
-                            Text="Dep:"
+                            Text="Out:"
                             TextColor="White">
                             <Label.Margin>
                                 <OnPlatform x:TypeArguments="Thickness">
@@ -108,8 +112,9 @@
                             </Label.Margin>
                         </Label>
 
-                        <DatePicker
-                            Margin="0,4,0,8"
+                    <DatePicker  
+                            Grid.Row="1"
+                            Grid.Column="1"
                             Date="{Binding DepartDate, Mode=TwoWay}"
                             FontFamily="{StaticResource FontFamilyDefault}"
                             MinimumDate="{x:Static x:DateTime.Now}"
@@ -129,10 +134,12 @@
                             </DatePicker.FontSize>
                         </DatePicker>
 
-                        <Label      
+                        <Label 
+                            Grid.Row="1"
+                            Grid.Column="2"
                             FontFamily="{StaticResource FontFamilyBold}"
                             Style="{StaticResource ListLabelTitleStyle}"
-                            Text="Ret:"
+                            Text="In:"
                             TextColor="White">
                             <Label.Margin>
                                 <OnPlatform x:TypeArguments="Thickness">
@@ -142,7 +149,8 @@
                         </Label>
 
                         <DatePicker
-                            Margin="0,4,0,8"
+                            Grid.Row="1"
+                            Grid.Column="3"
                             Date="{Binding ReturnDate, Mode=TwoWay}"
                             FontFamily="{StaticResource FontFamilyDefault}"
                             MinimumDate="{x:Static x:DateTime.Now}"
@@ -161,96 +169,138 @@
                                 </OnPlatform>
                             </DatePicker.FontSize>
                         </DatePicker>
-                    </StackLayout>
-
+                    
                     <Button     
+                        Margin="0,10,0,0"
+                        Grid.Row="2"
+                        Grid.ColumnSpan="4"
                         Command="{Binding SearchCommand}"
                         Style="{StaticResource ButtonDefaultStyle}"
                         Text="Search ➝" />
-                </StackLayout>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="95" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="95" />
+                    </Grid.ColumnDefinitions>
+
+                </Grid>
             </ListView.Header>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <Grid
                             Padding="15,15,15,0"
-                            AutomationId="FaultListItemGrid"
                             BackgroundColor="White">
-                            <Grid
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                HeightRequest="80"
-                                IsClippedToBounds="True"
-                                VerticalOptions="Center"
-                                WidthRequest="80">
-                                <Image
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    Aspect="AspectFill"
-                                    AutomationId="Photo1Image"
-                                    BackgroundColor="{StaticResource LightGrayImagePlaceholderColor}"
-                                    HorizontalOptions="FillAndExpand"
-                                    VerticalOptions="FillAndExpand" />
-                            </Grid>
 
-                            <!--Source="{Binding Photo1.FileBinary, Converter={StaticResource bytesToImageSourceConv}}"-->
-                            <Image
-                                Grid.Row="0"
-                                Grid.Column="2"
-                                Aspect="AspectFit"
-                                AutomationId="StatusImage"
-                                HeightRequest="35"
-                                HorizontalOptions="Start"
-                                VerticalOptions="Center"
-                                WidthRequest="35" />
-
-                            <!--Source="{Binding TicketStatus, Converter={StaticResource faultReportingImageConverter}}"-->
-
-                            <StackLayout
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                Padding="10,0"
-                                Spacing="3"
-                                VerticalOptions="Center">
-                                <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Vertical"  
+                                 Grid.Row="0"
+                                 Grid.Column="0">
                                     <Label
-                                        AutomationId="TicketIdLabel"
                                         FontAttributes="Bold"
                                         Style="{StaticResource ListLabelTitleStyle}"
                                         Text="{Binding Outbound.Airline}" />
+                                    <Label
+                                        Style="{StaticResource ListLabelSmallStyle}"
+                                        Text="▶" />
                                 </StackLayout>
-                                <Label
-                                    Style="{StaticResource DefaultLabelStyle}"
-                                    Text="{Binding Outbound.FromAirportCode}"
-                                    TextColor="{StaticResource DarkGreenColor}" />
-                                <Label
-                                    LineBreakMode="TailTruncation"
-                                    Style="{StaticResource DefaultLabelStyle}"
-                                    Text="{Binding Outbound.ToAirportCode}"
-                                    TextColor="{StaticResource DarkGreenColor}" />
-                                <Label
-                                    Style="{StaticResource DefaultLabelStyle}"
-                                    Text="{Binding Outbound.DepartureTime, StringFormat='{0:dd MMM yyyy}'}"
-                                    TextColor="{StaticResource DarkGreenColor}" />
-                            </StackLayout>
 
-                            <Grid
-                                Grid.Row="2"
-                                Grid.Column="0"
-                                Grid.ColumnSpan="3"
-                                Padding="-15,0,-15,0">
-                                <BoxView BackgroundColor="{StaticResource ColorSeparator}" HeightRequest="1" />
-                            </Grid>
+                                <StackLayout Orientation="Vertical"
+                                     Grid.Row="0"
+                                     Grid.Column="1">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        Style="{StaticResource ListLabelTitleStyle}"
+                                        Text="{Binding Outbound.DepartureTime, StringFormat='{0:hh:mm}'}" />
+                                    <Label
+                                        Style="{StaticResource ListLabelSmallStyle}"
+                                        Text="{Binding Outbound.FromAirportCode}" />
+                                </StackLayout>
+                                
+                                <StackLayout Orientation="Vertical"
+                                     Grid.Row="0"
+                                     Grid.Column="2">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        Style="{StaticResource ListLabelTitleStyle}"
+                                        Text="{Binding Outbound.ReturnTime, StringFormat='{0:hh:mm}'}" />
+                                    <Label
+                                        Style="{StaticResource ListLabelSmallStyle}"
+                                        Text="{Binding Outbound.ToAirportCode}" />
+                                </StackLayout>
+                           
+                                <StackLayout Orientation="Vertical"
+                                             Grid.Row="1"
+                                             Grid.Column="0">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        Style="{StaticResource ListLabelTitleStyle}"
+                                        Text="{Binding Return.Airline}" />
+                                    <Label
+                                        Style="{StaticResource ListLabelSmallStyle}"
+                                        Text="◀" />
+                                </StackLayout>
 
+                                <StackLayout Orientation="Vertical"
+                                             Grid.Row="1"
+                                             Grid.Column="1">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        Style="{StaticResource ListLabelTitleStyle}"
+                                        Text="{Binding Return.DepartureTime, StringFormat='{0:hh:mm}'}" />
+                                    <Label
+                                        Style="{StaticResource ListLabelSmallStyle}"
+                                        Text="{Binding Return.FromAirportCode}" />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Vertical"
+                                             Grid.Row="1"
+                                             Grid.Column="2">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        Style="{StaticResource ListLabelTitleStyle}"
+                                        Text="{Binding Return.ReturnTime, StringFormat='{0:hh:mm}'}" />
+                                    <Label
+                                        Style="{StaticResource ListLabelSmallStyle}"
+                                        Text="{Binding Return.ToAirportCode}" />
+                                </StackLayout>
+
+                            <Label  Grid.Row="0"
+                                    Grid.Column="3"
+                                    Style="{StaticResource DefaultLabelStyle}"
+                                    Text="{Binding Price, StringFormat='{0:C}'}"
+                                    HorizontalTextAlignment="Center"
+                                    TextColor="{StaticResource DarkGreenColor}" />
+
+                            <Button     
+                                Grid.Row="1"
+                                Grid.Column="3"
+                                Command="{Binding SearchCommand}"
+                                Style="{StaticResource ButtonSmallStyle}"
+                                Text="Add" />
+
+                            <BoxView 
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="4"
+                                    BackgroundColor="{StaticResource ColorSeparator}" HeightRequest="1" />
+                            
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="5" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
                                 <RowDefinition Height="1" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="80" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="35" />
+                                <ColumnDefinition Width="70" />
+                                <ColumnDefinition Width="70" />
+                                <ColumnDefinition Width="80" />
                             </Grid.ColumnDefinitions>
                         </Grid>
                     </ViewCell>
