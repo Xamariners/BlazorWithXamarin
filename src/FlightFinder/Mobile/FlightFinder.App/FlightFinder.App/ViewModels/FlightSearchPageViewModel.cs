@@ -21,6 +21,7 @@ namespace FlightFinder.App.ViewModels
         public FlightSearchState FlightSearchState { get; set; }
         
         public DelegateCommand SearchCommand { get; set; }
+        public DelegateCommand<Itinerary> AddCommand { get; set; }
 
         public IEnumerable<Airport> Airports { get; set; }
 
@@ -31,9 +32,10 @@ namespace FlightFinder.App.ViewModels
         public FlightSearchPageViewModel(INavigationService navigationService, FlightSearchState flightSearchState)
             : base(navigationService)
         {
-            Title = "Main Page";
+            Title = "Flight Finder (Empty Basket)";
             FlightSearchState = flightSearchState;
             SearchCommand = new DelegateCommand(Search);
+            AddCommand = new DelegateCommand<Itinerary>(Add);
         }
 
         private async void Search()
@@ -44,6 +46,12 @@ namespace FlightFinder.App.ViewModels
             await FlightSearchState.SearchFlights(criteria);
 
             Itineraries = FlightSearchState.SearchResults;
+        }
+
+        private void Add(Itinerary itinerary)
+        {
+            FlightSearchState.AddToShortlist(itinerary);
+            Title = $"Flight Finder (Basket: {FlightSearchState.Shortlist.Count})";
         }
 
         public override async void OnNavigatingTo(INavigationParameters parameters)

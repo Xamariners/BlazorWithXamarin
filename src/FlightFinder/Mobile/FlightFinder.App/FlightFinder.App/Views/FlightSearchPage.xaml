@@ -3,7 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FlightFinder.App.Views.FlightSearchPage"
              Title="Flight Finder"
+             x:Name="FlightSearchView"
              BackgroundColor="{StaticResource ColorPurple}">
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+            <Label Text="{Binding Title}" FontSize="16" TextColor="White" HorizontalTextAlignment="Center" />
+        </StackLayout>
+    </NavigationPage.TitleView>
 
     <Grid RowSpacing="5" BackgroundColor="{StaticResource ColorPurple}">
 
@@ -281,7 +288,8 @@
                             <Button     
                                 Grid.Row="1"
                                 Grid.Column="3"
-                                Command="{Binding SearchCommand}"
+                                Command="{Binding BindingContext.AddCommand, Source={x:Reference Name=FlightSearchView}}"
+                                CommandParameter="{Binding .}"
                                 Style="{StaticResource ButtonSmallStyle}"
                                 Text="Add" />
 
