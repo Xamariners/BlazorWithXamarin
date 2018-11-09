@@ -9,7 +9,7 @@
             <Color x:Key="LightGrayImagePlaceholderColor">#D8D8D8</Color>
             <Color x:Key="DarkGreenColor">#0F6A82</Color>
             <Color x:Key="ColorSeparator">#B0E9DE</Color>
-            <Color x:Key="ColorOrange">#FBAE17</Color>
+            <Color x:Key="ColorGray">#d8d8d8</Color>
             <Color x:Key="ColorPurple">#9d136d</Color>
             <Color x:Key="ColorLightPurple">#e558b4</Color>
             <Color x:Key="ColorWhite">White</Color>
@@ -40,7 +40,7 @@
                 </Setter>
                 <Setter Property="HeightRequest">
                     <OnPlatform x:TypeArguments="x:Double">
-                        <On Platform="iOS" Value="40" />
+                        <On Platform="iOS" Value="20" />
                         <On Platform="Android" Value="-1" />
                     </OnPlatform>
                 </Setter>
@@ -62,8 +62,8 @@
                 <Setter Property="BorderRadius" Value="10" />
                 <Setter Property="BorderWidth" Value="0" />
                 <Setter Property="BorderColor" Value="Transparent" />
-                <Setter Property="BackgroundColor" Value="{StaticResource ColorOrange}" />
-                <Setter Property="TextColor" Value="{StaticResource ColorWhite}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource ColorWhite}" />
+                <Setter Property="TextColor" Value="Black" />
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="HeightRequest">
                     <OnPlatform x:TypeArguments="x:Double">
