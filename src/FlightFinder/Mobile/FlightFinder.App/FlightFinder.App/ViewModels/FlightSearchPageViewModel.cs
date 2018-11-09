@@ -11,11 +11,13 @@ using System.Windows.Input;
 using FlightFinder.Common.Models;
 using FlightFinder.Common.Services;
 using FlightFinder.Shared.States;
+using Prism.Services;
 
 namespace FlightFinder.App.ViewModels
 {
     public class FlightSearchPageViewModel : ViewModelBase, INotifyPropertyChanged
     {
+        private readonly IPageDialogService _pageDialogService;
         public IEnumerable<Itinerary> Itineraries { get; set; }
 
         public FlightSearchState FlightSearchState { get; set; }
@@ -29,9 +31,10 @@ namespace FlightFinder.App.ViewModels
 
         public int ToAirportsSelectedIndex { get; set; }
 
-        public FlightSearchPageViewModel(INavigationService navigationService, FlightSearchState flightSearchState)
+        public FlightSearchPageViewModel(INavigationService navigationService, FlightSearchState flightSearchState, IPageDialogService pageDialogService)
             : base(navigationService)
         {
+            _pageDialogService = pageDialogService;
             Title = "Flight Finder (Empty Basket)";
             FlightSearchState = flightSearchState;
             SearchCommand = new DelegateCommand(Search);
@@ -40,6 +43,9 @@ namespace FlightFinder.App.ViewModels
 
         private async void Search()
         {
+            if(Airports == null)
+                Airports = await FlightSearchState.GetAllAirports();
+
             var criteria = new SearchCriteria(Airports.ToArray()[FromAirportsSelectedIndex].DisplayName,
                 Airports.ToArray()[ToAirportsSelectedIndex].DisplayName);
             
@@ -56,11 +62,21 @@ namespace FlightFinder.App.ViewModels
 
         public override async void OnNavigatingTo(INavigationParameters parameters)
         {
-            Airports = await FlightSearchState.GetAllAirports();
+            try
+            {
+                Airports = await FlightSearchState.GetAllAirports();
+            }
+            catch (Exception ex)
+            {
+                await _pageDialogService.DisplayAlertAsync("Error", ex.Message, "Okay");
+            }
 
-            // set default airports
-            FromAirportsSelectedIndex = 1;
-            ToAirportsSelectedIndex = 2;
+            if (Airports != null && Airports.Count() > 1)
+            {
+                // set default airports
+                FromAirportsSelectedIndex = 1;
+                ToAirportsSelectedIndex = 2;
+            }
 
             base.OnNavigatingTo(parameters);
         }

@@ -24,14 +24,14 @@
         <ListView
                     Grid.Row="0"
                     Grid.RowSpan="2"
-                    BackgroundColor="Transparent"
+                    BackgroundColor="{StaticResource ColorGray}"
                     HasUnevenRows="True"
                     IsPullToRefreshEnabled="true"
                     ItemsSource="{Binding Itineraries}"
                     SelectedItem="{Binding SelectedItinerary, Mode=TwoWay}"
                     SeparatorVisibility="None">
             <ListView.Header>
-                <Grid Padding="0,10">
+                <Grid Padding="0,10" BackgroundColor="{StaticResource ColorPurple}">
 
                     <Label  Grid.Row="0"
                             Grid.Column="0"   
@@ -57,7 +57,7 @@
                             >
                             <Picker.HeightRequest>
                                 <OnPlatform x:TypeArguments="x:Double">
-                                    <On Platform="iOS" Value="40" />
+                                    <On Platform="iOS" Value="20" />
                                     <On Platform="Android" Value="-1" />
                                 </OnPlatform>
                             </Picker.HeightRequest>
@@ -93,7 +93,7 @@
                             TextColor="{StaticResource DarkGreenColor}">
                             <Picker.HeightRequest>
                                 <OnPlatform x:TypeArguments="x:Double">
-                                    <On Platform="iOS" Value="40" />
+                                    <On Platform="iOS" Value="20" />
                                     <On Platform="Android" Value="-1" />
                                 </OnPlatform>
                             </Picker.HeightRequest>
@@ -129,7 +129,7 @@
                             <DatePicker.Format>dd/MM/yyyy</DatePicker.Format>
                             <DatePicker.HeightRequest>
                                 <OnPlatform x:TypeArguments="x:Double">
-                                    <On Platform="iOS" Value="40" />
+                                    <On Platform="iOS" Value="20" />
                                     <On Platform="Android" Value="-1" />
                                 </OnPlatform>
                             </DatePicker.HeightRequest>
@@ -165,7 +165,7 @@
                             <DatePicker.Format>dd/MM/yyyy</DatePicker.Format>
                             <DatePicker.HeightRequest>
                                 <OnPlatform x:TypeArguments="x:Double">
-                                    <On Platform="iOS" Value="40" />
+                                    <On Platform="iOS" Value="20" />
                                     <On Platform="Android" Value="-1" />
                                 </OnPlatform>
                             </DatePicker.HeightRequest>
