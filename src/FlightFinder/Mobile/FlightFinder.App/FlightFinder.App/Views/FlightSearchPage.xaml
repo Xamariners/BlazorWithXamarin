@@ -24,7 +24,7 @@
         <ListView
                     Grid.Row="0"
                     Grid.RowSpan="2"
-                    BackgroundColor="{StaticResource ColorGray}"
+                    BackgroundColor="{StaticResource ColorPurple}"
                     HasUnevenRows="True"
                     IsPullToRefreshEnabled="true"
                     ItemsSource="{Binding Itineraries}"
@@ -186,8 +186,8 @@
                         Text="Search ➝" />
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -214,7 +214,7 @@
                                         Style="{StaticResource ListLabelTitleStyle}"
                                         Text="{Binding Outbound.Airline}" />
                                     <Label
-                                        Style="{StaticResource ListLabelSmallStyle}"
+                                        Style="{StaticResource ListLabelTitleStyle}"
                                         Text="▶" />
                                 </StackLayout>
 
@@ -250,7 +250,7 @@
                                         Style="{StaticResource ListLabelTitleStyle}"
                                         Text="{Binding Return.Airline}" />
                                     <Label
-                                        Style="{StaticResource ListLabelSmallStyle}"
+                                        Style="{StaticResource ListLabelTitleStyle}"
                                         Text="◀" />
                                 </StackLayout>
 
@@ -283,6 +283,7 @@
                                     Style="{StaticResource DefaultLabelStyle}"
                                     Text="{Binding Price, StringFormat='{0:C}'}"
                                     HorizontalTextAlignment="Center"
+                                    VerticalTextAlignment="Center"
                                     TextColor="{StaticResource DarkGreenColor}" />
 
                             <Button     

@@ -4,8 +4,9 @@
              xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms"
              x:Class="FlightFinder.App.App">
     <Application.Resources>
-        <ResourceDictionary>
 
+        <StyleSheet Source="Assets/styles.css" />
+        <ResourceDictionary>
             <Color x:Key="LightGrayImagePlaceholderColor">#D8D8D8</Color>
             <Color x:Key="DarkGreenColor">#0F6A82</Color>
             <Color x:Key="ColorSeparator">#B0E9DE</Color>
@@ -76,7 +77,7 @@
                 <Setter Property="BorderRadius" Value="10" />
                 <Setter Property="BorderWidth" Value="0" />
                 <Setter Property="BorderColor" Value="Transparent" />
-                <Setter Property="BackgroundColor" Value="{StaticResource ColorOrange}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource ColorPurple}" />
                 <Setter Property="TextColor" Value="{StaticResource ColorWhite}" />
                 <Setter Property="FontSize" Value="Small" />
                 <Setter Property="HeightRequest">
