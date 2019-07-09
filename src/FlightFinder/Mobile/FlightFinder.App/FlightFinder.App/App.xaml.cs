@@ -26,9 +26,7 @@ namespace FlightFinder.App
         protected override async void OnInitialized()
         {
             InitializeComponent();
-
-            LiveReload.Init();
-
+            
             await NavigationService.NavigateAsync("NavigationPage/FlightSearchPage");
         }
 

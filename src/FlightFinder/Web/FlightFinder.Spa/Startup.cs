@@ -2,7 +2,7 @@
 using FlightFinder.Shared.Services;
 using FlightFinder.Shared.States;
 using FlightFinder.Spa.Services;
-using Microsoft.AspNetCore.Blazor.Builder;
+using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FlightFinder.Spa
@@ -17,7 +17,7 @@ namespace FlightFinder.Spa
             services.AddScoped<IAirportSearchService, AirportSearchService>();
         }
 
-        public void Configure(IBlazorApplicationBuilder app)
+        public void Configure(IComponentsApplicationBuilder app)
         {
             app.AddComponent<Main>("body");
         }
