@@ -1,4 +1,4 @@
-﻿@inject FlightSearchState flightSearchState
+@inject FlightSearchState flightSearchState
 
 <div id="search-and-results-area">
     <div id="search-area" class="px-2 py-3">
@@ -16,7 +16,7 @@
                OnRemoveItinerary=flightSearchState.RemoveFromShortlist />
 </div>
 
-@functions
+@code
 {
     protected override void OnInit()
     {

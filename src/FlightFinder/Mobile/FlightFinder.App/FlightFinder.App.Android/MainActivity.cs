@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using FlighFinder.App.Droid;
 using Prism;
 using Prism.Ioc;
 
