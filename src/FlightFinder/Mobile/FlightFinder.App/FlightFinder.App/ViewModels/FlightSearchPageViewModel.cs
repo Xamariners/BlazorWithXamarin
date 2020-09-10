@@ -1,15 +1,11 @@
 ﻿using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using FlightFinder.Common.Models;
-using FlightFinder.Common.Services;
 using FlightFinder.Shared.States;
 using Prism.Services;
 
@@ -21,7 +17,7 @@ namespace FlightFinder.App.ViewModels
         public IEnumerable<Itinerary> Itineraries { get; set; }
 
         public FlightSearchState FlightSearchState { get; set; }
-        
+
         public DelegateCommand SearchCommand { get; set; }
         public DelegateCommand<Itinerary> AddCommand { get; set; }
 
@@ -41,14 +37,18 @@ namespace FlightFinder.App.ViewModels
             AddCommand = new DelegateCommand<Itinerary>(Add);
         }
 
+        public override async void OnAppearing()
+        {
+            await GetAllAirports();
+        }
+
         private async void Search()
         {
-            if(Airports == null)
-                Airports = await FlightSearchState.GetAllAirports();
+            if (Airports is null) await GetAllAirports();
 
-            var criteria = new SearchCriteria(Airports.ToArray()[FromAirportsSelectedIndex].DisplayName,
-                Airports.ToArray()[ToAirportsSelectedIndex].DisplayName);
-            
+            var criteria = new SearchCriteria(Airports.ToArray()[FromAirportsSelectedIndex].Code,
+                Airports.ToArray()[ToAirportsSelectedIndex].Code);
+
             await FlightSearchState.SearchFlights(criteria);
 
             Itineraries = FlightSearchState.SearchResults;
@@ -60,11 +60,11 @@ namespace FlightFinder.App.ViewModels
             Title = $"Flight Finder (Basket: {FlightSearchState.Shortlist.Count})";
         }
 
-        public override async void OnNavigatingTo(INavigationParameters parameters)
+        private async Task GetAllAirports()
         {
             try
             {
-                Airports = await FlightSearchState.GetAllAirports();
+                Airports = await FlightSearchState.GetAllAirports().ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -77,8 +77,6 @@ namespace FlightFinder.App.ViewModels
                 FromAirportsSelectedIndex = 1;
                 ToAirportsSelectedIndex = 2;
             }
-
-            base.OnNavigatingTo(parameters);
         }
     }
 }
