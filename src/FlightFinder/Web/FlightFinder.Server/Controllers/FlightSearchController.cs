@@ -8,8 +8,9 @@ using FlightFinder.Shared;
 
 namespace FlightFinder.Server.Controllers
 {
+    [ApiController]
     [Route("api/[controller]")]
-    public class FlightSearchController
+    public class FlightSearchController : ControllerBase
     {
         public async Task<IEnumerable<Itinerary>> Search([FromBody] SearchCriteria criteria)
         {

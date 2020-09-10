@@ -11,7 +11,7 @@
 {
     private IEnumerable<Airport> airports = Array.Empty<Airport>();
 
-    protected override async Task OnInitAsync()
+    protected override async Task OnInitializedAsync()
     {
         airports = await airportSearchState.GetAllAirports();
     }

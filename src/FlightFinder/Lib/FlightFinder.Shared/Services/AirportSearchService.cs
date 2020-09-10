@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 using FlightFinder.Common.Models;
 using FlightFinder.Common.Services;
-using Microsoft.AspNetCore.Components;
 
 namespace FlightFinder.Shared.Services
 {
@@ -16,7 +16,7 @@ namespace FlightFinder.Shared.Services
 
         public async Task<IEnumerable<Airport>> GetAllAirports()
         {
-            var result = await _httpClient.GetJsonAsync<Airport[]>("/api/airports");
+            var result = await _httpClient.GetFromJsonAsync<Airport[]>("/api/airports");
             return result;
         }
     }

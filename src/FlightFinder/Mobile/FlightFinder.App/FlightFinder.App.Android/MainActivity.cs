@@ -1,9 +1,9 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using FlighFinder.App.Droid;
 using Prism;
 using Prism.Ioc;
+using Resource = FlighFinder.App.Droid.Resource;
 
 namespace FlightFinder.App.Droid
 {
