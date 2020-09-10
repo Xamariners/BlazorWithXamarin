@@ -5,8 +5,9 @@ using FlightFinder.Shared;
 
 namespace FlightFinder.Server.Controllers
 {
+    [ApiController]
     [Route("api/[controller]")]
-    public class AirportsController : Controller
+    public class AirportsController : ControllerBase
     {
         public IEnumerable<Airport> Airports()
         {

@@ -1,24 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 using FlightFinder.Common.Models;
 using FlightFinder.Common.Services;
-using Microsoft.AspNetCore.Components;
-
 
 namespace FlightFinder.Shared.Services
 {
     public class FlightSearchService : ServiceBase, IFlightSearchService
-    {  
-        public FlightSearchService(HttpClient httpClient, IAppConfiguration configuration) : base (httpClient, configuration)
+    {
+        public FlightSearchService(HttpClient httpClient, IAppConfiguration configuration) : base(httpClient, configuration)
         {
         }
-        
+
         public async Task<IEnumerable<Itinerary>> Search(SearchCriteria criteria)
         {
             var address = "/api/flightsearch";
 
-            var result = await _httpClient.PostJsonAsync<IEnumerable<Itinerary>>(address, criteria);
+            var response = await _httpClient.PostAsJsonAsync(address, criteria);
+            var result = await response.Content.ReadFromJsonAsync<Itinerary[]>();
             return result;
         }
     }

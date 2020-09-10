@@ -5,9 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using FlightFinder.Common.Models;
 using FlightFinder.Common.Services;
-using Microsoft.AspNetCore.Blazor;
-using Microsoft.JSInterop;
-
 
 namespace FlightFinder.Shared.Services
 {
